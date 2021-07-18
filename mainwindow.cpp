@@ -9,8 +9,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     RegWindow *regWindow = new RegWindow();
+    sWin = new SetWindow();
     regWindow->show();
     this->connect(regWindow, SIGNAL(regFinished(Client*)), this, SLOT(startChat(Client*)));
+    this->connect(sWin, SIGNAL(setChanged(quint16, quint16)), this, SLOT(changeSettings(quint16, quint16)));
 }
 
 MainWindow::~MainWindow()
@@ -28,7 +30,9 @@ void MainWindow::startChat(Client *client)
 
 void MainWindow::postOutMessage(QByteArray msg, QByteArray result)
 {
-    ui->textBrowser->append(msg.data());
+    QByteArray text = msg;
+    text.insert(0, "You: ");
+    ui->textBrowser->append(text.data());
     ui->textBrowser->append(result.data());
 }
 
@@ -63,4 +67,15 @@ void MainWindow::on_sendButton_clicked()
     }
 
     _client->send(msg, contacts);
+}
+
+void MainWindow::on_setButton_clicked()
+{
+    sWin->show();
+}
+
+void MainWindow::changeSettings(quint16 max_size, quint16 byte_per_sec)
+{
+    _client->setMaxSize(max_size);
+    _client->setSpeed(byte_per_sec);
 }

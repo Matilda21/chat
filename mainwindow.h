@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 #include "client.h"
 #include "regwindow.h"
+#include "setwindow.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -18,13 +19,17 @@ public:
 
 private slots:
     void on_sendButton_clicked();
-public slots:   
+    void on_setButton_clicked();
+
+public slots:
     void postOutMessage(QByteArray msg, QByteArray result);
     void postInMessage(QByteArray msg);
     void startChat(Client *client);
+    void changeSettings(quint16 max_size, quint16 byte_per_sec);
 
 private:
     Ui::MainWindow *ui;
+    SetWindow *sWin;
 public:
     Client *_client;
 };

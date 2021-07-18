@@ -20,17 +20,21 @@ SOURCES += \
     client.cpp \
     main.cpp \
     mainwindow.cpp \
-    regwindow.cpp
+    regwindow.cpp \
+    setwindow.cpp
 
 HEADERS += \
     client.h \
     mainwindow.h \
+    message.h \
     regwindow.h \
-    contact.h
+    contact.h \
+    setwindow.h
 
 FORMS += \
     mainwindow.ui \
-    regwindow.ui
+    regwindow.ui \
+    setwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
