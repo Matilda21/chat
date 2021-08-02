@@ -39,7 +39,7 @@ private:
 public:
     Client(QObject *parent = nullptr);
     void send_text(QByteArray &msg, const std::vector<Contact> &contacts);
-    void send_file(QIODevice *file, const std::vector<Contact> &contacts);
+    void send_file(QIODevice &file, const std::vector<Contact> &contacts);
     void setMaxSize(quint16 _max_size);
     void setSpeed(quint16 _byte_per_sec);
     void splitMsg(QDataStream &in, quint16 full_size, const std::vector<Contact> &contacts, quint16 type);
