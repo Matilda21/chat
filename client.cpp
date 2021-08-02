@@ -23,12 +23,12 @@ void Client::send_text(QByteArray &msg, const std::vector<Contact> &contacts)
     emit startSending();
 }
 
-void Client::send_file(QIODevice *file, const std::vector<Contact> &contacts)
+void Client::send_file(QIODevice &file, const std::vector<Contact> &contacts)
 {
-    file->open(QIODevice::ReadOnly);
-    QDataStream in(file);
-    splitMsg(in, file->bytesAvailable(), contacts, FILE_MSG);
-    file->close();
+    file.open(QIODevice::ReadOnly);
+    QDataStream in(&file);
+    splitMsg(in, file.bytesAvailable(), contacts, FILE_MSG);
+    file.close();
 
     if (timer->isActive())
         return;

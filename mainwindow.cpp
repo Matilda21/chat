@@ -40,11 +40,11 @@ void MainWindow::postInMessage(QByteArray msg, quint16 key)
 
         if (dialog.exec() == QDialog::Accepted);
         {
-            QFile *file =new QFile(dialog.getFilePath());
-            file->open(QIODevice::WriteOnly);
-            QDataStream in(file);
+            QFile file(dialog.getFilePath());
+            file.open(QIODevice::WriteOnly);
+            QDataStream in(&file);
             in.writeRawData(msg.data(), msg.size());
-            file->close();
+            file.close();
             ui->textBrowser->append("File was downloaded");
         }
         dialog.done(0);
@@ -93,8 +93,8 @@ void MainWindow::on_fileButton_clicked()
 
     if (dialog.exec() == QDialog::Accepted)
     {
-        QFile *file = new QFile(dialog.getFilePath());
-        file->open(QIODevice::ReadOnly);
+        QFile file(dialog.getFilePath());
+        file.open(QIODevice::ReadOnly);
 
         QString data = ui->contactEdit->toPlainText();
         QStringList strList = data.split(QRegExp("[\n]"),QString::SkipEmptyParts);
