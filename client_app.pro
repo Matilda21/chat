@@ -18,22 +18,30 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     client.cpp \
+    contact.cpp \
     main.cpp \
     mainwindow.cpp \
+    message.cpp \
+    recfiledialog.cpp \
     regwindow.cpp \
+    sendfiledialog.cpp \
     setwindow.cpp
 
 HEADERS += \
     client.h \
     mainwindow.h \
     message.h \
+    recfiledialog.h \
     regwindow.h \
     contact.h \
+    sendfiledialog.h \
     setwindow.h
 
 FORMS += \
     mainwindow.ui \
+    recfiledialog.ui \
     regwindow.ui \
+    sendfiledialog.ui \
     setwindow.ui
 
 # Default rules for deployment.
